@@ -18,12 +18,14 @@ screeny = 720
 xf = 0
 yf = 0
 player = pygame.image.load("player.png")
+timerback = pygame.image.load("timer.png")
 image_size = (100, 100)
 player2 = pygame.transform.scale(player,image_size)
 player3 = pygame.transform.flip(player2, True, False)
 food = pygame.image.load("food.png")
 playerfinal = player2
 background = pygame.image.load("background.png")
+finishback = pygame.image.load("finishback.png")
 
 
 while running:
@@ -88,6 +90,7 @@ while running:
                 xf = random.randint(0, 1048 - 100)
                 yf = random.randint(0, 720 - 100)
                 image_size = (image_size[0] + 2, image_size[1] + 2) 
+                speed += 0.06
 
         if image_size[0] >= 1048:
                 if image_size[1] >= 720:
@@ -96,6 +99,7 @@ while running:
                         
         
         timer2 = timer / 60
+        timer2 = round(timer2, 1)
         
         text = font.render(str(timer2), True, (255, 255, 255))
         playerfinal3 = pygame.transform.scale(playerfinal, image_size)
@@ -107,9 +111,11 @@ while running:
         screen.blit(background, (0,0))
         screen.blit(playerfinal3, (x,y))
         screen.blit(food, (xf,yf))
-        screen.blit(text, (400, 50))
+        screen.blit(timerback, (480, 45))
+        screen.blit(text, (490, 50))
         if textwin:
-                screen.blit(textwin, (350, 300))
+                screen.blit(finishback, (370, 295))
+                screen.blit(textwin, (380, 300))
         
 
         
